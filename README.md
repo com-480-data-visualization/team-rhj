@@ -37,10 +37,7 @@ Strategically, these findings advocate for segmented marketing to cater to the d
 
 ### Related work
 
-Several projects have utilized this dataset, with examples available [here](https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset/code). 
-
 Several [analyses](https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset/code) have already been conducted on this dataset, providing initial insights into consumer behavior and shopping habits. However, these analyses tend to be somewhat basic, focusing on surface-level interpretations without delving deeply into the data. Our approach aims to take this a step further by conducting a more thorough and interesting analysis. We plan to make our analysis more interactive, engaging, and insightful by highlighting more correlations and connections between features. This approach will not only provide a deeper understanding of the dataset but also uncover valuable insights that previous analyses may have overlooked.
-
 
 Our project transforms consumer behavior analysis by focusing on interactive data exploration, a leap from traditional static visualizations that depict trends in gender, geography, and age. We're developing a web application to make data dynamically engaging, inspired by Shopify's real-time business insight dashboards. This platform will feature interactive charts, diagrams, and filters, enabling users to delve into specific segments, from age-specific purchasing patterns to seasonal shopping impacts.
 
