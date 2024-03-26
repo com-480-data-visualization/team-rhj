@@ -15,11 +15,15 @@
 ### Dataset
 
 Our project utilizes the **Consumer Behavior and Shopping Habits Dataset** available [here](https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset), comprising 3900 orders from customers in the USA.
-Considering the preprocessing, the dataset is very clean and doesn’t need so much advanced preprocessing. 
+Considering the preprocessing, the dataset is very clean and doesn’t need so much advanced preprocessing. You will find more about the preprocessing in the Exploratory Data Analysis part. 
 
 ### Problematic
 
-Our visualization project seeks to demystify the complex trends in consumer shopping behavior, highlighting how demographics, locations, and other factors influence purchasing habits. We focus on uncovering shifts in consumer preferences across different groups and locations, analyzing how seasonal changes affect shopping behavior, and evaluating the impact of promotional strategies on buying decisions. This effort is crucial in today's digital age, where a vast amount of consumer data exists but harnessing it for insightful business decisions remains challenging. We aim to transform raw data into a dynamic storytelling tool through interactive visualizations, providing retailers, marketers, and strategists with real-time insights into consumer behavior. This can inform product development, marketing, and customer engagement strategies. Our primary audience includes retailers, e-commerce platforms looking to refine sales strategies, marketing professionals crafting targeted campaigns, business analysts seeking deeper market insights, and academics researching consumer behavior. By offering both broad and detailed insights through engaging visualizations, our project serves as a versatile tool for those interested in the nuances of consumer dynamics, equipping them with the knowledge to make informed decisions.
+Our visualization project seeks to demystify the complex trends in consumer shopping behavior, highlighting how demographics, locations, and other factors influence purchasing habits. We focus on uncovering shifts in consumer preferences across different groups and locations, analyzing how seasonal changes affect shopping behavior, and evaluating the impact of promotional strategies on buying decisions. 
+
+This effort is crucial in today's digital age, where a vast amount of consumer data exists but harnessing it for insightful business decisions remains challenging. We aim to transform raw data into a dynamic storytelling tool through interactive visualizations, providing retailers, marketers, and strategists with real-time insights into consumer behavior. 
+
+This can inform product development, marketing, and customer engagement strategies. Our primary audience includes retailers, e-commerce platforms looking to refine sales strategies, marketing professionals crafting targeted campaigns, business analysts seeking deeper market insights, and academics researching consumer behavior. By offering both broad and detailed insights through engaging visualizations, our project serves as a versatile tool for those interested in the nuances of consumer dynamics, equipping them with the knowledge to make informed decisions.
 
 ### Exploratory Data Analysis
 
