@@ -2,9 +2,9 @@
 
 | Student's name | SCIPER |
 | -------------- | ------ |
-| | |
-| | |
-| | |
+| Birling Romain | 310054|
+| Christophe Hugues | 311252|
+| Jeanne Allocio | 311844 |
 
 [Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
 
@@ -12,35 +12,35 @@
 
 **10% of the final grade**
 
-This is a preliminary milestone to let you set up goals for your final project and assess the feasibility of your ideas.
-Please, fill the following sections about your project.
-
-*(max. 2000 characters per section)*
-
 ### Dataset
 
-> Find a dataset (or multiple) that you will explore. Assess the quality of the data it contains and how much preprocessing / data-cleaning it will require before tackling visualization. We recommend using a standard dataset as this course is not about scraping nor data processing.
->
-> Hint: some good pointers for finding quality publicly available datasets ([Google dataset search](https://datasetsearch.research.google.com/), [Kaggle](https://www.kaggle.com/datasets), [OpenSwissData](https://opendata.swiss/en/), [SNAP](https://snap.stanford.edu/data/) and [FiveThirtyEight](https://data.fivethirtyeight.com/)), you could use also the DataSets proposed by the ENAC (see the Announcements section on Zulip).
+Our project utilizes the **Consumer Behavior and Shopping Habits Dataset** available [here](https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset), comprising 3900 orders from customers in the USA.
+Considering the preprocessing, the dataset is very clean and doesn’t need so much advanced preprocessing. 
 
 ### Problematic
 
-> Frame the general topic of your visualization and the main axis that you want to develop.
-> - What am I trying to show with my visualization?
-> - Think of an overview for the project, your motivation, and the target audience.
+Our visualization project seeks to demystify the complex trends in consumer shopping behavior, highlighting how demographics, locations, and other factors influence purchasing habits. We focus on uncovering shifts in consumer preferences across different groups and locations, analyzing how seasonal changes affect shopping behavior, and evaluating the impact of promotional strategies on buying decisions. This effort is crucial in today's digital age, where a vast amount of consumer data exists but harnessing it for insightful business decisions remains challenging. We aim to transform raw data into a dynamic storytelling tool through interactive visualizations, providing retailers, marketers, and strategists with real-time insights into consumer behavior. This can inform product development, marketing, and customer engagement strategies. Our primary audience includes retailers, e-commerce platforms looking to refine sales strategies, marketing professionals crafting targeted campaigns, business analysts seeking deeper market insights, and academics researching consumer behavior. By offering both broad and detailed insights through engaging visualizations, our project serves as a versatile tool for those interested in the nuances of consumer dynamics, equipping them with the knowledge to make informed decisions.
 
 ### Exploratory Data Analysis
 
-> Pre-processing of the data set you chose
-> - Show some basic statistics and get insights about the data
+Please refer to [this notebook](dataviz.ipynb) for our exploratory data analysis.
+
+Our analysis delves into consumer data, revealing insights crucial for refining business strategies. With an average purchase amount of $59.76 and a broad standard deviation, we see diverse spending habits, emphasizing the need for tailored marketing. The customer base, averaging 44 years in age, spans from young adults to seniors, suggesting strategies should vary by age group to maximize engagement.
+
+Satisfaction levels, with an average rating of 3.75 out of 5, indicate room for improvement in product or service offerings. Additionally, the mix of geographical locations and preferences for product categories and payment methods, notably PayPal, points to a consumer base comfortable with e-commerce.
+
+Strategically, these findings advocate for segmented marketing to cater to the diverse consumer segments and spending behaviors. Optimizing product lines and promotions to align with demographic trends and satisfaction insights is vital. Enhancing the online shopping experience and offering flexible payment options are key to fulfilling customer expectations, driving satisfaction, and ultimately, promoting sales growth.
 
 ### Related work
 
+Several projects have utilized this dataset, with examples available [here](https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset/code). 
 
-> - What others have already done with the data?
-> - Why is your approach original?
-> - What source of inspiration do you take? Visualizations that you found on other websites or magazines (might be unrelated to your data).
-> - In case you are using a dataset that you have already explored in another context (ML or ADA course, semester project...), you are required to share the report of that work to outline the differences with the submission for this class.
+
+Our project transforms consumer behavior analysis by focusing on interactive data exploration, a leap from traditional static visualizations that depict trends in gender, geography, and age. We're developing a web application to make data dynamically engaging, inspired by Shopify's real-time business insight dashboards. This platform will feature interactive charts, diagrams, and filters, enabling users to delve into specific segments, from age-specific purchasing patterns to seasonal shopping impacts.
+
+By adopting elements from digital leaders like Shopify, our application aims to simplify complex data analysis, offering a more intuitive and immersive experience.
+
+Our goal is to revolutionize how consumer behavior data is viewed and interacted with, enhancing the decision-making process for businesses and individuals. This initiative represents a significant shift towards active, user-driven data exploration, opening new avenues for real-time discovery and insights in consumer dynamics.
 
 ## Milestone 2 (26th April, 5pm)
 
