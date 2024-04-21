@@ -49,6 +49,20 @@ Our goal is to revolutionize how consumer behavior data is viewed and interacted
 
 **10% of the final grade**
 
+### Project goal 
+
+The objective of our project is to conduct a comprehensive analysis of shopping and consumption patterns among consumers in the United States. Our dataset is rich with diverse metrics, encompassing detailed information about consumer demographics, the variety of products purchased, and the geographic distribution of these purchases. Through this analysis, we aim to uncover trends and insights into consumer behavior, product preferences, and regional variations in consumption. This will enable us to better understand the factors that influence purchasing decisions and to identify potential areas for market growth or strategic intervention
+
+### Visualisations
+
+Our website will feature a series of dynamic visualizations to explore consumer behavior across the United States. The central feature of our project is an interactive map that displays the average number of orders per state, providing a visual representation of consumption patterns across the country.
+
+Here's how the interactive features will work:
+
+**Hover Interaction:** As users hover their mouse over any state on the map, a tooltip will appear. This tooltip will provide succinct insights into the state’s specific consumption patterns, offering a snapshot of key data such as average spending per order and top purchased categories.
+**Click Interaction:** Clicking on a state will redirect the user to a dedicated page on our website. This page will host a deeper analytical dive into the specific characteristics of consumption in that state. It will include detailed breakdowns of consumer demographics, preferred product types, and purchasing trends, alongside comparisons with national averages.
+
+In addition to the main map, the homepage will host supplementary visualizations that facilitate comparisons between states. These will include bar graphs, scatter plots, and heat maps that visualize data on variables like spending power, product preference diversity, and seasonal buying trends. These comparative tools are designed to highlight regional differences and similarities, helping stakeholders identify targeted opportunities for marketing and product placement.
 
 ## Milestone 3 (31st May, 5pm)
 
