@@ -59,9 +59,9 @@ Our website will feature a series of dynamic visualizations to explore consumer 
 
 Here's how the interactive features will work:
 
-**Hover Interaction:** As users hover their mouse over any state on the map, a tooltip will appear. This tooltip will provide succinct insights into the state’s specific consumption patterns, offering a snapshot of key data such as average spending per order and top purchased categories.
+    - **Hover Interaction:** As users hover their mouse over any state on the map, a tooltip will appear. This tooltip will provide succinct insights into the state’s specific consumption patterns, offering a snapshot of key data such as average spending per order and top purchased categories.
 
-**Click Interaction:** Clicking on a state will redirect the user to a dedicated page on our website. This page will host a deeper analytical dive into the specific characteristics of consumption in that state. It will include detailed breakdowns of consumer demographics, preferred product types, and purchasing trends, alongside comparisons with national averages.
+    - **Click Interaction:** Clicking on a state will redirect the user to a dedicated page on our website. This page will host a deeper analytical dive into the specific characteristics of consumption in that state. It will include detailed breakdowns of consumer demographics, preferred product types, and purchasing trends, alongside comparisons with national averages.
 
 In addition to the main map, the homepage will host supplementary visualizations that facilitate comparisons between states. These will include bar graphs, scatter plots, and heat maps that visualize data on variables like spending power, product preference diversity, and seasonal buying trends. These comparative tools are designed to highlight regional differences and similarities, helping stakeholders identify targeted opportunities for marketing and product placement.
 
