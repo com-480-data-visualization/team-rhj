@@ -77,7 +77,10 @@ The structure of our website will be as follows:
     -	A bar chart displaying the subscription status.
     -	A pie chart displaying the distribution of payment methods used. 
     -	A bar chart displaying the shipping type distribution.
-  
+      
+    ![Customer type](image/customer%20type.png)
+    *Figure 1* : Customer type analysis dashboard
+
   - Product preference analysis: this dashboard will include: 
     - A chart showing the distribution of spending power across categories.
     - A bar chart displaying the distribution of product categories purchased.
@@ -86,12 +89,16 @@ The structure of our website will be as follows:
     - A donut char diplaying the item category distribution.
     - A pie chart showing the ordered item size distribution 
     
-    
+    ![Product preference](image/product%20preference.png)
+    *Figure 2* : Product preference analysis dashboard
+
 - **Filters bar** : To enhance user experience, we will include a filter bar on the left of the dashboard that allow users to customize the data displayed on the graphs. Users will be able to filter data by several metrics: gender, age, item category, season, subscritpion status, shipping method and payment method. This will enable users to focus on specific segments of the data and extract more targeted insights.
   
 <!-- ![filters](images/filters.jpg) -->
 - **Comparison part** : At the bottom of the page, you'll also find a section for comparing states. It's interesting to be able to study a report in detail, but it's also very interesting to be able to compare customer types and product preferences between reports. Here is an example of how the visualisation will be for the state comparison: 
 
+![Comparison](image/state%20comparison.png)
+*Figure 3* : State comparison dashboard
 
 <!-- ![compact](images/compact.jpg) -->
 <!-- ![compare](images/compare.jpg) -->
