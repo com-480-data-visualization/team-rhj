@@ -97,8 +97,8 @@ The structure of our website will be as follows:
 <!-- ![filters](images/filters.jpg) -->
 - **Comparison part** : At the bottom of the page, you'll also find a section for comparing states. It's interesting to be able to study a report in detail, but it's also very interesting to be able to compare customer types and product preferences between reports. Here is an example of how the visualisation will be for the state comparison: 
 
-![Comparison](image/state%20comparison.png)
-*Figure 3* : State comparison dashboard
+  ![Comparison](image/state%20comparison.png)
+  *Figure 3* : State comparison dashboard
 
 <!-- ![compact](images/compact.jpg) -->
 <!-- ![compare](images/compare.jpg) -->
