@@ -55,15 +55,38 @@ The objective of our project is to conduct a comprehensive analysis of shopping 
 
 ### Visualisations
 
-Our website will feature a series of dynamic visualizations to explore consumer behavior across the United States. The central feature of our project is an interactive map that displays the average number of orders per state, providing a visual representation of consumption patterns across the country.
+Our website will feature a series of dynamic visualizations to explore consumer behavior across the United States. The central feature of our project is an interactive map that displays in a color-coded way insightful informations such as the average number of orders per state, providing a visual representation of consumption patterns across the country. 
 
-Here's how the interactive features will work:
+In addition to the map, we will include a series of supplementary visualizations that offer deeper insights into consumer behavior. These will include bar graphs, pie charts, and scatter plots that visualize data on variables such as spending power, product preference diversity, and seasonal buying trends. These visualizations will be interactive, allowing users to filter data by state, demographic variables, product categories, and other relevant metrics. This will enable users to focus on specific segments of the data and extract more targeted insights.
 
-- **Hover Interaction:** As users hover their mouse over any state on the map, a tooltip will appear. This tooltip will provide succinct insights into the state’s specific consumption patterns, offering a snapshot of key data such as average spending per order and top purchased categories.
+The structure of our website will be as follows:
 
-- **Click Interaction:** Clicking on a state will redirect the user to a dedicated page on our website. This page will host a deeper analytical dive into the specific characteristics of consumption in that state. It will include detailed breakdowns of consumer demographics, preferred product types, and purchasing trends, alongside comparisons with national averages.
 
-In addition to the main map, the homepage will host supplementary visualizations that facilitate comparisons between states. These will include bar graphs, scatter plots, and heat maps that visualize data on variables like spending power, product preference diversity, and seasonal buying trends. These comparative tools are designed to highlight regional differences and similarities, helping stakeholders identify targeted opportunities for marketing and product placement.
+- **Map** : The map will be the central feature of the homepage, displaying relevant informations in a color-coded way such as the average spending per order, the top purchased categories, and the distribution of payment methods. . Users can also interact with the map in two ways:
+  
+  - **Hover Interaction:** As users hover their mouse over any state on the map, a tooltip will appear. This tooltip will provide succinct insights into the state’s specific consumption patterns, offering a snapshot of key data such as average spending per order and top purchased categories.
+
+  - **Click Interaction:** Clicking on a state will redirect the user to a dedicated page on our website. This page will host a deeper analytical dive into the specific characteristics of consumption in that state. It will include detailed breakdowns of consumer demographics, preferred product types, and purchasing trends, alongside comparisons with national averages.
+
+<!-- ![map](images/map.png) -->
+
+- **Graphs section** : Below the map, we will include supplementary visualizations that facilitate understanding of regional buying trends. These will include bar graphs, pie charts, and scatter plots that visualize data on variables such as spending power, product preference diversity, and seasonal buying trends. We plan to include specifically the following graphs (non-exhaustive list):
+    - A pie chart showing the distribution of spending power across genders.
+    - A bar chart displaying the distribution of product categories purchased.
+    - A pie chart displaying the distribution of payment methods used.
+    - A scatter plot showing the relationship between age and average spending per order.
+    - A line chart showing seasonal buying trends.
+    - A pie chart showing the distribution of ratings.
+    - A bar chart showing the distribution of spending power across categories.
+    - Many other graphs that will be added as we explore the data further.
+- **Filters bar** : To enhance user experience, we will include a filter bar on the left of the graph section that allow users to customize the data displayed on the graphs. Users can filter data by state, demographic variables, product categories, time periods, and other relevant metrics. This will enable users to focus on specific segments of the data and extract more targeted insights.
+  
+<!-- ![filters](images/filters.jpg) -->
+- **Comparison toggle** : On top right of the graphs section, we will include a toggle button that allows users to compare data between states. Toggling this feature on will split the graphs section into two columns, each displaying data for a different state. 
+This will enable users to easily compare consumption patterns and identify regional differences or similarities. When toggled off, the graphs section will revert to displaying data for a single state in a more compact way than the column layout.
+
+<!-- ![compact](images/compact.jpg) -->
+<!-- ![compare](images/compare.jpg) -->
 
 ## Milestone 3 (31st May, 5pm)
 
