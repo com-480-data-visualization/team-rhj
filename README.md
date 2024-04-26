@@ -105,7 +105,7 @@ The structure of our website will be as follows:
 
 ### Tools 
 
-Here are the tools we used and we will use for our data and for the visualization. 
+Here are the tools we used and we will use for our data and for the visualizations. 
 
 **Data Analysis**: 
   - Python 
