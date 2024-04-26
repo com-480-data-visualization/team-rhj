@@ -116,6 +116,14 @@ Here are the tools we used and we will use for our data and for the visualizatio
   - d3.js
   - Nextjs 
 
+### Lectures
+We will carefully follow the recommendations and techniques learned in the the following lectures : 
+  - **Lecture Data**: To ensure that our data visualizations are accurate, informative, and visually appealing.
+  - **Lecture Interaction**: For the interactive map and the filters bar.
+  - **Lecture Perception Colors**: To ensure that our visualizations are accessible to all users, intuitive, and easy to understand.
+  - **Lecture Maps**: For the interactive map.
+  - **Lecture Graphs**: For the different graphs we will use in the deepdive page.
+
 ### Extra ideas
 
 If time permits, we have some ideas of visualizations that could elevate the project experience: 
