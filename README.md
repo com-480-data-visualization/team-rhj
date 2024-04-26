@@ -103,7 +103,33 @@ The structure of our website will be as follows:
 <!-- ![compact](images/compact.jpg) -->
 <!-- ![compare](images/compare.jpg) -->
 
+### Tools 
+
+Here are the tools we used and we will use for our data and for the visualization. 
+
+**Data Analysis**: 
+  - Python 
+
+**Visualizations**: 
+  - React
+  - React simple map
+  - d3.js
+  - Nextjs 
+
+### Extra ideas
+
+If time permits, we have some ideas of visualizations that could elevate the project experience: 
+
+  - **Network visualizations**: we will show the relationships between different product categories or between demographics and product preferences using network graphs. We can use a library like D3.js to create force-directed graphs or network diagrams that illustrate the connections and strength of relationships based on the dataset.
+
+  - **Sankey diagram**: we can use Sankey diagrams to visualize the flow of consumer spending across different states or to trace the path from demographic characteristics to specific purchasing behaviors. We can use D3.js to create interactive Sankey diagrams that are visually engaging and informative. These diagrams would add a novel visualization format that can enhance understanding of data flows and transitions, though they are supplementary to more traditional charts.
+
+  - **Multi-layered map**: we can incorporate multiple layers in our interactive map that users can toggle. These layers could show different aspects like demographic distribution, spending power, and product popularity. We can use advanced mapping libraries such as Leaflet.js with layer control features to allow users to customize what data they see on the map. 
+
+### Skeleton website
+
 Here is the link of our website: https://data-viz-dusky.vercel.app/
+
 
 ## Milestone 3 (31st May, 5pm)
 
