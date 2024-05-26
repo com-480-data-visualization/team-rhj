@@ -1,0 +1,26 @@
+.intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:50vh;
+    margin-bottom: 15em;
+    padding-left: 10px;
+    padding-right: 50px;
+}
+
+.intro-text {
+    font-size: 1.3em;
+    padding-left: 0px;
+    text-align: justify;
+    line-height: 1.5;
+}
+
+.welcomeText {
+    background: linear-gradient(-114.3deg, #df7620 0.2%, #c7c109 68.5%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    font-weight: 600;
+  }

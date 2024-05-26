@@ -9,6 +9,7 @@ export default function Index() {
     <DashProvider>
       <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
         {/* Use flexBasis to split the height and add margin between components */}
+        <Introduction />
         <Box sx={{ flex: 1, width: '100%', marginTop: '10vh'}}>  {/* Adjust marginBottom as needed */}
           <MapComponent />
         </Box>
