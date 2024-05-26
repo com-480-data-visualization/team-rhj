@@ -1,6 +1,7 @@
 import React from 'react';
 import DashboardInfo from '../components/DashboardInfo';
 import MapComponent from "../components/MapComponent";
+import MapComponent from "../components/Introduction";
 import { DashProvider } from "../providers/DashProvider";
 import { Box } from '@mui/material';
 
