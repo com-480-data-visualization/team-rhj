@@ -87,6 +87,20 @@ const MapChart = () => {
           )}
         </Geographies>
       </ComposableMap>
+      {tooltipContent && (
+        <Box sx={{
+          position: "absolute",
+          left: `${tooltipPosition.x}px`,
+          top: `${tooltipPosition.y}px`,
+          background: "white",
+          border: "1px solid black",
+          padding: "10px",
+          pointerEvents: "none",
+          zIndex: 1000
+        }}>
+          {tooltipContent}
+        </Box>
+      )}
     </Box>
   );
 };
