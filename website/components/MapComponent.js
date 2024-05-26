@@ -1,14 +1,16 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { Box } from '@mui/material';
-import { useDash } from "../providers/DashProvider"; // Import your DashProvider context
-import stateCodes from "../data/stateCodes.json";  // Assuming the JSON data is stored here
+import { useDash } from "../providers/DashProvider"; // Assuming you are using some context
+import stateCodes from "../data/stateCodes.json"; // Ensure this is correctly linked
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
 const MapChart = () => {
   const [selectedStates, setSelectedStates] = useState([]);
-  const { setSelectedStateNames } = useDash(); // Utilisez le contexte ici
+  const { setSelectedStateNames } = useDash();
+  const [tooltipContent, setTooltipContent] = useState("");
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
 
   const handleStateClick = (stateId) => {
     setSelectedStates(prev => {
@@ -25,40 +27,34 @@ const MapChart = () => {
   useEffect(() => {
     const selectedStateNames = selectedStates.map(stateId => {
       const state = stateCodes.find(s => s.val === stateId);
-      return state ? state.id : '';
+      return state ? state.name : '';
     });
-    setSelectedStateNames(selectedStateNames); // Mettez à jour le contexte avec les noms des états sélectionnés
+    setSelectedStateNames(selectedStateNames);
   }, [selectedStates, setSelectedStateNames]);
 
-  // Gestion du clic en dehors pour désélectionner tous les États
-  useEffect(() => {
-    const handleOutsideClick = (event) => {
-      if (!event.target.closest(".rsm-geographies")) {
-        setSelectedStates([]);
-      }
-    };
-
-    document.addEventListener("click", handleOutsideClick);
-    return () => document.removeEventListener("click", handleOutsideClick);
-  }, []);
-
   return (
-    <Box sx={{ width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <ComposableMap projection="geoAlbersUsa" 
-        projectionConfig={{
-            scale:1000}} 
-        style={{ 
-            width: '100%', height: 'auto' }}>
+    <Box sx={{ width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+      <ComposableMap projection="geoAlbersUsa"
+        projectionConfig={{ scale: 1000 }} 
+        style={{ width: '100%', height: 'auto' }}>
 
         <Geographies geography={geoUrl} className="rsm-geographies">
           {({ geographies }) => (
             geographies.map(geo => {
-              const stateCode = stateCodes.find(s => s.val === geo.id)?.id;
+              const stateDetail = stateCodes.find(s => s.val === geo.id);
               const isStateSelected = selectedStates.includes(geo.id);
               return (
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
+                  onMouseEnter={evt => {
+                    const { x, y } = evt.currentTarget.getBoundingClientRect();
+                    setTooltipContent(stateDetail ? stateDetail.name : "Unknown State"); // Display the full state name
+                    setTooltipPosition({ x, y });
+                  }}
+                  onMouseLeave={() => {
+                    setTooltipContent("");
+                  }}
                   onClick={() => handleStateClick(geo.id)}
                   stroke="grey"
                   style={{
