@@ -145,7 +145,7 @@ Here is the link of our website: https://data-viz-dusky.vercel.app/
 
 ### 
 
-You can find you final website here: 
+You can find our final website here: 
 
 - [ShopScopeUSA](https://data-viz-dusky.vercel.app)
 
