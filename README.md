@@ -143,6 +143,17 @@ Here is the link of our website: https://data-viz-dusky.vercel.app/
 
 **80% of the final grade**
 
+### 
+
+You can find you final website here: 
+
+- [ShopScopeUSA](https://data-viz-dusky.vercel.app)
+
+You can find the process book and the screencast here: 
+
+- [Process book]()
+- [Screencast](https://www.youtube.com/watch?v=trjSVQCwb4w)
+
 
 ## Late policy
 
