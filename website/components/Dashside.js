@@ -1,49 +1,146 @@
-import React from 'react';
-import { Stack, Paper, Box, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Stack, Paper, Box, Typography, Slider, MenuItem, Select, FormControl, InputLabel, Accordion, AccordionSummary, AccordionDetails, Switch } from '@mui/material';
 import { useDash } from '../providers/DashProvider';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Title } from './DashboardElem/shared';
+import stateCodes from "../public/data/stateCodes.json";  // Assuming the JSON data is stored here
+
 
 export default function Dashside() {
-  const { selectCategory } = useDash();
+  const {
+    selectedStateNames, setAgeRange,
+    setCategories, setVisualisation,
+    categories, gender,
+    setGender, season,
+    setSeasons, sizes, setSizes
+  } = useDash();
+
+  const [sliderValue, setSliderValue] = useState([20, 50]);
+
+  const handleSliderChange = (event, newValue) => {
+    setSliderValue(newValue);
+    setAgeRange(newValue);
+  };
+
+  // Formater les noms des États pour l'affichage
+  function getStateFullName(acronym) {
+    const state = stateCodes.find(state => state.id === acronym);
+    return state ? state.name : null;
+  }
 
   return (
-    <Box sx={{ 
-        width: '20%', 
-        height: '100vh', 
-        backgroundColor: '#ffffff', // Fond blanc
-        display: 'flex', 
-        justifyContent: 'center', 
-        borderRight: '2px solid #e0e0e0'  // Bordure droite pour séparation
-    }}>
-      <Stack direction="column" spacing={2} sx={{ width: '80%', marginTop: '5vh' }}>
-        <Typography variant="h6" component="h2" sx={{ 
-            width: '100%', 
-            textAlign: 'center', 
-            marginBottom: '20px', // Espacement avant les Paper
-            fontWeight: 'bold', // Gras pour le titre
-            color: '#333' // Couleur du texte
-          }}>
-          Types de visualisations
-        </Typography>
-        {['Vizualisation_1', 'Vizualisation_2', 'Vizualisation_3', 'Vizualisation_4', 'Vizualisation_5'].map((category) => (
-          <Paper
-            key={category}
-            sx={{
-              height: 'calc(100vh / 20)',
-              maxHeight: 'calc(100vh / 20)',
-              fontFamily: 'Roboto',
-              cursor: 'pointer',
-              textAlign: 'center',
-              lineHeight: 'calc(100vh / 20)', // Alignement vertical du texte
-              backgroundColor: '#f4f4f4', // Fond des Paper
-              boxShadow: '0 2px 4px rgba(0,0,0,0.1)', // Ombre légère
-              borderRadius: '4px', // Coins arrondis
-              margin: '2px 0', // Marge entre chaque Paper
-            }}
-            onClick={() => selectCategory(category)}
+    <Box padding={2} >
+      <Stack direction="column" spacing={2} sx={{ width: '100%', marginTop: '5vh' }}>
+
+        <Title >
+          Filters
+        </Title>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}>
+            <Typography>Selected states</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Stack direction="column" spacing={.5}>
+              <div style={{ borderBottom: '1px solid #ccc', width: '100%' }} />
+              {selectedStateNames.map((state) => (
+                <Typography key={state}>{getStateFullName(state)}</Typography>
+              ))}
+            </Stack>
+          </AccordionDetails>
+        </Accordion>
+
+        <Box>
+          <Typography>Age Range:</Typography>
+          <Slider
+            value={sliderValue}
+            onChange={handleSliderChange}
+            aria-labelledby="input-slider"
+            min={18}
+            max={70}
+            valueLabelDisplay="auto"
+            sx={{ margin: '20px 0' }}
+          />
+        </Box>
+
+        <FormControl fullWidth>
+          <InputLabel id="gender-select-label">Gender</InputLabel>
+          <Select
+            labelId="gender-select-label"
+            value={gender}
+            label="Option"
+            onChange={(e) => setGender(e.target.value)}
+            sx={{ marginBottom: '20px' }}
           >
-            {category}
-          </Paper>
-        ))}
+            <MenuItem value="All">All</MenuItem>
+            <MenuItem value="Male">Man</MenuItem>
+            <MenuItem value="Female">Woman</MenuItem>
+          </Select>
+        </FormControl>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}>
+            <Typography>Categories</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Stack direction="column" spacing={.5}>
+              <div style={{ borderBottom: '1px solid #ccc', width: '100%' }} />
+              {['Clothing', 'Footwear', 'Accessories', 'Outerwear'].map((category) => (
+                <div key={category} style={{ display: 'flex', alignItems: 'center' }}>
+                  <Typography sx={{ flexGrow: 1 }}>{category}</Typography>
+                  <Switch defaultChecked onChange={(e) => setCategories(
+                    prevCategories => ({
+                      ...prevCategories,
+                      [category]: e.target.checked,
+                    }))} />
+                </div>
+              ))}
+            </Stack>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}>
+            <Typography>Seasons</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Stack direction="column" spacing={.5}>
+              <div style={{ borderBottom: '1px solid #ccc', width: '100%' }} />
+              {['Winter', 'Spring', 'Summer', 'Fall'].map((season) => (
+                <div key={season} style={{ display: 'flex', alignItems: 'center' }}>
+                  <Typography sx={{ flexGrow: 1 }}>{season}</Typography>
+                  <Switch defaultChecked onChange={(e) => setSeasons(
+                    prevSeasons => ({
+                      ...prevSeasons,
+                      [season]: e.target.checked,
+                    }))} />
+                </div>
+              ))}
+            </Stack>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}>
+            <Typography>Sizes</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Stack direction="column" spacing={.5}>
+              <div style={{ borderBottom: '1px solid #ccc', width: '100%' }} />
+              {['S', 'M', 'L', 'XL'].map((size) => (
+                <div key={size} style={{ display: 'flex', alignItems: 'center' }}>
+                  <Typography sx={{ flexGrow: 1 }}>{size}</Typography>
+                  <Switch defaultChecked onChange={(e) => setSizes(
+                    prevSizes => ({
+                      ...prevSizes,
+                      [size]: e.target.checked,
+                    }))} />
+                </div>
+              ))}
+            </Stack>
+          </AccordionDetails>
+        </Accordion>
+
       </Stack>
     </Box>
   );

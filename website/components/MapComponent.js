@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect, useMemo } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-import { Box } from '@mui/material';
-import { useDash } from "../providers/DashProvider"; // Assuming you are using some context
-import stateCodes from "../data/stateCodes.json"; // Ensure this is correctly linked
+import { Box, Button, FormControl, InputLabel, MenuItem, Paper, Select, Stack, Tooltip, Typography } from '@mui/material';
+import { useDash } from "../providers/DashProvider"; // Import your DashProvider context
+import stateCodes from "../public/data/stateCodes.json";  // Assuming the JSON data is stored here
+import { scaleLinear } from 'd3-scale';
+import { interpolateReds, interpolateBlues } from 'd3-scale-chromatic';
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
+export { geoUrl };
+
 const MapChart = () => {
   const [selectedStates, setSelectedStates] = useState([]);
-  const { setSelectedStateNames } = useDash();
-  const [tooltipContent, setTooltipContent] = useState("");
-  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+  const { setSelectedStateNames } = useDash(); // Utilize the context here
+  const { filteredData } = useDash();
+  const { mapShownProperty, setMapShownProperty } = useDash();
 
   const handleStateClick = (stateId) => {
     setSelectedStates(prev => {
@@ -24,80 +28,175 @@ const MapChart = () => {
     });
   };
 
+  const handleDeselectAll = () => {
+    setSelectedStates([]);
+  };
+
   useEffect(() => {
     const selectedStateNames = selectedStates.map(stateId => {
       const state = stateCodes.find(s => s.val === stateId);
-      return state ? state.name : '';
+      return state ? state.id : '';
     });
-    setSelectedStateNames(selectedStateNames);
+    setSelectedStateNames(selectedStateNames); // Update context with selected state names
   }, [selectedStates, setSelectedStateNames]);
 
-  return (
-    <Box sx={{ width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-      <ComposableMap projection="geoAlbersUsa"
-        projectionConfig={{ scale: 1000 }} 
-        style={{ width: '100%', height: 'auto' }}>
 
-        <Geographies geography={geoUrl} className="rsm-geographies">
+  const maxOrderValue = useMemo(() => {
+    return Math.max(...Object.values(filteredData.dataMap || []), 0);
+  }, [filteredData]);
+  const minOrderValue = useMemo(() => {
+    const dataMap = filteredData?.dataMap ?? [];
+    let min = 999999999
+    for (const key in dataMap) {
+      if (dataMap[key] < min && dataMap[key] > 2) {
+        min = dataMap[key]
+      }
+    }
+    return min
+    // Remove undefined values and calculate the minimum
+    return Math.min(...Object.values(dataMap).filter(x => x !== undefined), 0);
+  }, [filteredData]);
+  const minOrderValueFormatted = useMemo(() => {
+    return mapShownProperty === 'Number of Sales' ? `${minOrderValue} sales` : `$${minOrderValue.toFixed(2)}`;
+  }, [minOrderValue, mapShownProperty]);
+  const maxOrderValueFormatted = useMemo(() => {
+    return mapShownProperty === 'Number of Sales' ? `${maxOrderValue} sales` : `$${maxOrderValue.toFixed(2)}`;
+  }, [maxOrderValue, mapShownProperty]);
+
+  const colorScale = useMemo(() => {
+    return scaleLinear()
+      .domain([minOrderValue, maxOrderValue])
+      .range([0.2, 1]);
+  }, [maxOrderValue, minOrderValue]);
+
+  return (
+    <Stack sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+      <h1 className="title-with-bars">Market Movements: A Geographic Guide to U.S. Consumer Behavior</h1>
+      <p>
+      Dive into the dynamic retail landscape of the United States with our interactive map, vividly displaying key metrics such 
+      as the number of orders per state, total purchase amounts, or average spending. Customize your view by selecting the 
+      specific metric you wish to explore. Simply click on any state to delve deeper, taking you to a dedicated page filled 
+      with detailed graphs and in-depth analyses. On this page, you will gain a richer understanding of consumer behavior and 
+      market trends specific to each state, providing a comprehensive look at regional nuances in shopping habits.
+      </p>
+      <Box fullWidth>
+        <FormControl fullWidth>
+          <InputLabel >Show</InputLabel>
+          <Select
+            value={mapShownProperty}
+            label="What to show"
+            onChange={(e) => setMapShownProperty(e.target.value)}
+            sx={{ marginBottom: '20px' }}
+          >
+            <MenuItem value="Number of Sales">Number of Sales</MenuItem>
+            <MenuItem value="Total Purchase Amount (USD)">Total Purchase Amount (USD)</MenuItem>
+            <MenuItem value="Average Purchase Amount (USD)">Average Purchase Amount (USD)</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+      <ComposableMap
+        projection="geoAlbersUsa"
+        projectionConfig={{ scale: 1000 }}
+        style={{ width: '100%', height: 'auto' }}
+      >
+        <Geographies geography={geoUrl}>
           {({ geographies }) => (
             geographies.map(geo => {
-              const stateDetail = stateCodes.find(s => s.val === geo.id);
-              const isStateSelected = selectedStates.includes(geo.id);
+              const stateCode = geo.id;
+              const stateValue = filteredData.dataMap[stateCode] || 0;
+              const stateValueFormatted = mapShownProperty === 'Number of Sales' ? `${stateValue} sales` : `${mapShownProperty} : \n$${stateValue.toFixed(2)}`;
+
+              const isStateSelected = selectedStates.includes(stateCode);
+              const stateName = stateCodes.find(s => s.val === geo.id)?.name;
+              const redFillColor = interpolateReds(colorScale(stateValue));
+              const blueFillColor = interpolateBlues(colorScale(stateValue));
               return (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  onMouseEnter={evt => {
-                    const { x, y } = evt.currentTarget.getBoundingClientRect();
-                    setTooltipContent(stateDetail ? stateDetail.name : "Unknown State"); // Display the full state name
-                    setTooltipPosition({ x, y });
-                  }}
-                  onMouseLeave={() => {
-                    setTooltipContent("");
-                  }}
-                  onClick={() => handleStateClick(geo.id)}
-                  stroke="grey"
-                  style={{
-                    default: {
-                      fill: isStateSelected ? "red" : "#D6D6DA",
-                      outline: "black",
-                      strokeWidth: 0.5,
-                      strokeOpacity: 1,
+                <Tooltip key={geo.rsmKey}
+                  title={
+                    <Stack>
+
+                      <Typography color="inherit">{stateName || ''}</Typography>
+                      <div style={{ borderBottom: '1px solid #ccc', width: '100%' }} />
+                      <p style={{ whiteSpace: 'pre-wrap', width: '100%' }} >
+                        {stateValueFormatted}
+                      </p>
+                    </Stack>
+                  }
+                  componentsProps={{
+                    tooltip: {
+                      sx: {
+                        backgroundColor: 'white', // Tooltip background
+                        color: 'black', // Text color
+                        fontSize: '0.875rem', // Text size
+                        border: '1px solid #ccc', // Optional border
+                      },
                     },
-                    hover: {
-                      fill: "#F53",
-                      outline: "black",
-                      strokeWidth: 0.5,
-                      strokeOpacity: 1,
-                    },
-                    pressed: {
-                      fill: "#E42",
-                      outline: "black",
-                      strokeWidth: 0.5,
-                      strokeOpacity: 1,
-                    }
                   }}
-                />
+                >
+
+                  <Geography
+                    geography={geo}
+                    onClick={() => handleStateClick(geo.id)}
+                    stroke="grey"
+                    style={{
+                      default: {
+                        fill: isStateSelected ? blueFillColor : redFillColor,
+                        outline: "black",
+                        strokeWidth: 0.5,
+                        strokeOpacity: 1,
+                      },
+                      hover: {
+                        fill: isStateSelected ? blueFillColor : redFillColor,
+                        outline: "black",
+                        strokeWidth: .5,
+                        strokeOpacity: 1,
+                      },
+                      pressed: {
+                        fill: "gray",
+                        outline: "black",
+                        strokeWidth: 0.5,
+                        strokeOpacity: 1,
+                      }
+                    }}
+                  />
+                </Tooltip>
               );
             })
           )}
         </Geographies>
       </ComposableMap>
-      {tooltipContent && (
-        <Box sx={{
-          position: "absolute",
-          left: `${tooltipPosition.x}px`,
-          top: `${tooltipPosition.y}px`,
-          background: "white",
-          border: "1px solid black",
-          padding: "10px",
-          pointerEvents: "none",
-          zIndex: 1000
-        }}>
-          {tooltipContent}
+
+
+
+      <Box sx={{ position: 'absolute', bottom: 16, left: 16, backgroundColor: 'white', padding: 2, borderRadius: 1, boxShadow: 2 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 1 }}>
+          <Box sx={{ width: 24, height: 24, backgroundColor: interpolateBlues(0.7), marginRight: 1 }} />
+          <span>Selected</span>
         </Box>
-      )}
-    </Box>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ width: 24, height: 24, backgroundColor: interpolateReds(0.7), marginRight: 1 }} />
+          <span>Not Selected</span>
+        </Box>
+      </Box>
+      <Box sx={{ width: '80%', maxWidth: '600px', marginTop: 2 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: 1 }}>
+          <span>{minOrderValueFormatted}</span>
+          <span>{maxOrderValueFormatted}</span>
+        </Box>
+        <Box sx={{ height: '24px', background: `linear-gradient(to right, ${interpolateReds(0.2)}, ${interpolateReds(1)})`, marginBottom: 1 }} />
+        <Box sx={{ height: '24px', background: `linear-gradient(to right, ${interpolateBlues(0.2)}, ${interpolateBlues(1)})` }} />
+      </Box>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleDeselectAll}
+        sx={{ position: 'absolute', bottom: 16, right: 16 }}
+      >
+        Deselect All
+      </Button>
+
+
+    </Stack >
   );
 };
 

@@ -1,23 +1,21 @@
 import React from 'react';
 import { useDash } from '../providers/DashProvider';
-import Vizualisation_1 from './DashboardElem/Vizualisation_1';
-import Vizualisation_2 from './DashboardElem/Vizualisation_2';
+import {Box } from '@mui/material';
+import CustomerTypeAnalysis from './DashboardElem/CustomerTypeAnalysis';
+import ProductPreferenceAnalysis from './DashboardElem/ProductPreferenceAnalysis';
 
 const CategoryComponent = {
-  "Vizualisation_1": Vizualisation_1,
-  "Vizualisation_2": Vizualisation_2,
-  "Vizualisation_3": Vizualisation_1,
-  "Vizualisation_4": Vizualisation_1,
-  "Vizualisation_5": Vizualisation_1
+  "Customer Type": CustomerTypeAnalysis,
+  "Product Preference": ProductPreferenceAnalysis,
 };
 
 export default function Dashboardd() {
-  const { activeCategory } = useDash();
-  const ComponentToRender = CategoryComponent[activeCategory] || Vizualisation_1;
+  const { visualisation } = useDash();
+  const ComponentToRender = CategoryComponent[visualisation] || CustomerTypeAnalysis;
 
   return (
-    <div style={{ width: '80%', height: '100vh' }}>
-      <ComponentToRender/>
-    </div>
+    <Box sx={{  }}>
+      <ComponentToRender />
+    </Box>
   );
 }

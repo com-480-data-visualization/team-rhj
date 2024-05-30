@@ -1,21 +1,30 @@
 import React from 'react';
+import MainPage from '../components/MainPage';
 import DashboardInfo from '../components/DashboardInfo';
 import MapComponent from "../components/MapComponent";
-import MapComponent from "../components/Introduction";
+import Introduction from "../components/Introduction";
 import { DashProvider } from "../providers/DashProvider";
 import { Box } from '@mui/material';
+import CompareComponent from '@/components/CompareComponent';
 
 export default function Index() {
   return (
     <DashProvider>
-      <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-        {/* Use flexBasis to split the height and add margin between components */}
-        <Introduction />
-        <Box sx={{ flex: 1, width: '100%', marginTop: '10vh'}}>  {/* Adjust marginBottom as needed */}
+      <Box sx={{ flex: 1 }}>
+        <Box sx={{ flex: 1}}>  
+          <MainPage />
+        </Box>
+        <Box sx={{ flex: 1, marginTop: '10vh' }}> 
+          <Introduction />
+        </Box>
+        <Box sx={{ flex: 1, marginTop: '10vh' }}>
           <MapComponent />
         </Box>
-        <Box sx={{ flex: 1, width: '100%', marginTop: '10vh' }}>   {/* Adjust marginTop as needed */}
+        <Box sx={{ flex: 1, marginTop: '10vh' }}>  
           <DashboardInfo />
+        </Box>
+        <Box sx={{ flex: 1, marginTop: '10vh' }}>  
+          <CompareComponent />
         </Box>
       </Box>
     </DashProvider>
