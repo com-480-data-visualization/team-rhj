@@ -151,7 +151,7 @@ You can find you final website here:
 
 You can find the process book and the screencast here: 
 
-- [Process book]()
+- [Process book](https://github.com/com-480-data-visualization/team-rhj/blob/master/Process%20book.pdf)
 - [Screencast](https://www.youtube.com/watch?v=trjSVQCwb4w)
 
 
